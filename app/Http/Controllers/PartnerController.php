@@ -2,11 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Exceptions\ErrorPageException;
 use App\Http\Requests\PartnerRequest;
 use App\Http\Resources\PartnerCollection;
 use App\Models\Partner;
-use Exception;
 
 class PartnerController extends Controller
 {
@@ -24,11 +22,11 @@ class PartnerController extends Controller
         {
             $partners->where('status', '=', $request->input('type'));
         }
-        if($request->input('country'))
+        if($request->input('country') || $request->input('state') == 'nostate')
         {
             $partners->where('countries_covered', 'LIKE', '%'.$request->input('country').'%');
         }
-        if($request->input('state'))
+        if($request->input('state') && $request->input('state') !== 'nostate')
         {
             $partners->where('states_covered', 'LIKE', '%'.$request->input('state').'%');
         }

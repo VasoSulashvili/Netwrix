@@ -21,7 +21,7 @@
                 </path>
             </svg>
         </div>
-        <div v-show="!partners.length > 0">
+        <div id="empty-result" v-show="!partners.length > 0">
             Your search parameters did not match any partners. Please try
             different search.
         </div>

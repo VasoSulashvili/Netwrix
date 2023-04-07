@@ -48,7 +48,7 @@
                         <div>
                             <select
                                 class="selector-input country-selector-input"
-                                @change="dataSelected"
+                                @change="countrySelected"
                                 v-model="country"
                             >
                                 <option selected value="">
@@ -69,7 +69,7 @@
                                 @change="dataSelected"
                                 v-model="state"
                             >
-                                <option selected value="">Choose State</option>
+                                <option value="">Choose State</option>
                                 <option
                                     v-for="s in states"
                                     :value="s.short_name"
@@ -90,6 +90,7 @@
 export default {
     data() {
         return {
+            initStates: [],
             types: [],
             countries: [],
             states: [],
@@ -122,16 +123,26 @@ export default {
 
                 if (statesResponse.status === 200) {
                     const statesResult = await statesResponse.json();
-                    this.states = statesResult.data;
+                    this.initStates = statesResult.data;
+                    this.states = this.initStates;
                 }
             } catch (error) {
                 console.log(error);
             }
         },
-        dataSelected() {
+        countrySelected() {
             this.countries.map((c) => {
                 if (c.short_name === this.country) this.states = c.states;
             });
+
+            if (!this.country) {
+                this.showStates = true;
+                this.states = this.initStates;
+            }
+            this.state = "";
+            this.dataSelected();
+        },
+        dataSelected() {
             this.$emit("data-selected", {
                 type: this.type,
                 country: this.country,

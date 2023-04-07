@@ -15,6 +15,11 @@ body {
     margin: 50px auto;
     text-align: center;
 }
+#empty-result {
+    margin-top: 50px;
+    font-size: 25px;
+    text-align: center;
+}
 #wrapper {
     max-width: 1600px;
     margin: auto;

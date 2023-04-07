@@ -12,7 +12,6 @@
 	<div id="wrapper">
 		<div id="app"></div>
 	</div>
-	
 
 	@vite('resources/js/app.js')
 </body>

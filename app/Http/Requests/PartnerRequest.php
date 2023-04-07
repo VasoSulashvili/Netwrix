@@ -26,7 +26,7 @@ class PartnerRequest extends FormRequest
         return [
             'type' => 'nullable|string',
             'country' => 'nullable|string|min:2|max:2',
-            'state' => 'nullable|string|min:2|max:2',
+            'state' => 'nullable|string|min:2',
             'search' => 'nullable'
         ];
     }
