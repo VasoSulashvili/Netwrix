@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Exceptions\ErrorPageException;
 use App\Http\Requests\PartnerRequest;
 use App\Http\Resources\PartnerCollection;
 use App\Models\Partner;
+use Exception;
 
 class PartnerController extends Controller
 {
@@ -17,6 +19,7 @@ class PartnerController extends Controller
     public function __invoke(PartnerRequest $request)
     {
         $partners = Partner::query();
+
         if($request->input('type'))
         {
             $partners->where('status', '=', $request->input('type'));
@@ -35,5 +38,7 @@ class PartnerController extends Controller
                 ->orWhere('company', 'LIKE', '%'.$request->input('search').'%');
         }
         return new PartnerCollection($partners->get());
+
+        
     }
 }
