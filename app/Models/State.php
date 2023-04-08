@@ -9,6 +9,9 @@ class State extends Model
 {
     protected $table = 'loc_state';
 
+    protected $fillable = ['name', 'short_name', 'country_id'];
+
+    public $timestamps = false;
     
     // Relationships
     public function country() : BelongsTo

@@ -24,7 +24,8 @@ class PartnerController extends Controller
         }
         if($request->input('country') || $request->input('state') == 'nostate')
         {
-            $partners->where('countries_covered', 'LIKE', '%'.$request->input('country').'%');
+            $country = $request->input('state') == 'nostate' ? 'US' : $request->input('country');
+            $partners->where('countries_covered', 'LIKE', '%'.$country.'%');
         }
         if($request->input('state') && $request->input('state') !== 'nostate')
         {
