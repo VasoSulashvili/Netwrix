@@ -131,8 +131,8 @@ class StatesSeeder extends Seeder
 
         foreach($data as $state)
         {
-            $countryShortName = $state[1] === 'nostate' ? 'US' : $state[1];
-            $country = Country::where('short_name', '=', $countryShortName)->first();
+            $shortName = $state[1] === 'nostate' ? 'US' : $state[1];
+            $country = Country::where('states_covered', 'LIKE', $shortName)->first();
             State::create([
                 'name' => $state[0],
                 'short_name' => $state[1],
