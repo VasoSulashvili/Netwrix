@@ -2,6 +2,7 @@
 
 namespace App\Exceptions;
 
+use Exception;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 use Throwable;
 
@@ -47,11 +48,11 @@ class Handler extends ExceptionHandler
             //
         });
 
-        $this->renderable(function(ErrorPageException $e, $request){
+        $this->renderable(function(Exception $e, $request){
             if($request->is('api/*')) {
                 return response()->json([
                     'data' => $e->getMessage(),
-                ], 403);
+                ], $e->getCode());
             }
         });
     }

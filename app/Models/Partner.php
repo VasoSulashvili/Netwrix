@@ -7,4 +7,6 @@ use Illuminate\Database\Eloquent\Model;
 class Partner extends Model
 {
     protected $table = 'partner_locator';
+
+    public $timestamps = false;
 }

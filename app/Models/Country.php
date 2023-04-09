@@ -9,6 +9,8 @@ class Country extends Model
 {
     protected $table = 'loc_country';
 
+    public $timestamps = false;
+
     // Relationships
     public function states() : HasMany
     {
