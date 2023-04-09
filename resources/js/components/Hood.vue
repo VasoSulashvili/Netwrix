@@ -182,13 +182,11 @@ export default {
                             value: element.short_name,
                         });
                     });
-                    this.initStates = states;
                     this.states = states;
                 }
             });
 
             if (!this.country) {
-                this.showStates = true;
                 this.states = this.initStates;
             }
             this.state = "";
