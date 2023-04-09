@@ -19,6 +19,7 @@
 import Tile from "./components/Tile.vue";
 import Hood from "./components/Hood.vue";
 import Spinner from "./components/Spinner.vue";
+
 export default {
     components: {
         Tile,
@@ -75,7 +76,19 @@ export default {
                     this.isLoading = false;
                     this.resultMessage = "Too many attempts";
                 }
-            } catch (error) {}
+                if (response.status === 403) {
+                    const result = await response.json();
+                    this.isLoading = false;
+                    Choose;
+                    this.partners = result.data;
+                    this.partners = [];
+                    this.resultMessage = result.data;
+                }
+            } catch (error) {
+                Choose;
+                this.resultMessage = error.message;
+                this.isLoading = false;
+            }
         },
     },
     created() {

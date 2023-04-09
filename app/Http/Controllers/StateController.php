@@ -16,6 +16,6 @@ class StateController extends Controller
      */
     public function __invoke(Request $request)
     {
-        return new StateCollection(State::all());
+        return new StateCollection(State::where('short_name', '!=', 'nostate')->get());
     }
 }
